@@ -3,6 +3,14 @@
 
 <br/>
 
+## Docker Image
+
+A Docker image is a file used to execute code in a Docker container. Docker images act as a set of instructions to build a Docker container, like a template. Docker images also act as the starting point when using Docker. An image is comparable to a snapshot in virtual machine (VM) environments.
+
+## Container
+
+It is the running version of image. Multiple containers can be running from the same image.
+
 ## Docker Networks
 
 There are three types of docker networks -
@@ -15,7 +23,7 @@ There are three types of docker networks -
 
 ### **Bridge Network:**
 
-- When a docker container is created without specifying any particular network, its assigned under default network which is bridge network.This is private internal network on docker host in range of **172.17...** series.
+- When a docker container is created without specifying any particular network, its assigned under default network which is bridge network. This is private internal network on docker host in range of **172.17...** series.
 
   ```
     docker run ubuntu
@@ -98,17 +106,54 @@ There are three types of docker networks -
 
 <br/>
 
-## Docker install on windows 
+## Common Docker Commands
 
-- Docker install on Windows can be done by two ways:
+```dockerfile
 
-  1. **Docker toolbox** - Toolbox consists of Oracle virtual box, A linux system and a docker on that linux system. Docker toolbox does nothing but
-installs a virutal linux system on your windows machine so that it can support linux images to run. Windows 7 , 64 bit system is required for Docker toolbox.
-  2. **Docker Desktop** - Docker toolbox is legacy system and is required for older windows. Docker desktop is similar but it uses Microsoft hiper-v for virualization instead of oracle virtual box. MS hiper-v is only supported by windows enterprise version or professional version as they come with by default hiper-v support. 
+# run a particular image on docker
+  docker run <image-name>	
 
-- Above options supports running linux containers on windows host machine. Windows server 2016 support Windows containers. Windows containers are of two types:
+# By default will run latest version unless a specific version is specified
+  docker run <image-name>:<version>	
 
-  1. Windows server (OS kernel is shared between containers)
-  2. Hiper-v isolation where a highly optimized OS is created or each container and each container uses its own share of OS. 
+# list of images  
+  docker images	
+
+# remove an image. If a container is running on that image then it will throw an error
+  docker rmi <image-name>	
+
+# pull a image from docker-hub repository  
+  docker pull <image-name>	
+
+# list of containers (processes)
+  docker ps
+  docker ps -a 	# list all containers, all running and previously exited containers
+
+# to stop a particular container
+  docker stop <container-id> / <name> 
+
+# remove a stopped/exited/running container. If you do a ps -a it should not appear again
+  docker rm <container-id> / <name>
+
+# remove the container that matches the chars. 
+# Multiple containers can be removed by providing unique characters with spaces in same command  
+  docker rm <first unique characters of container-id>
+
+# container starts and then sleeps for 1000 secs
+  docker run <image-name> sleep 1000	
+
+# execute a particular command inside a container
+  docker exec <container-id> / <name> "command"	
+
+# details about the particular container
+  docker inspect <container-id> 
+
+# remove all stopped containers
+  docker container prune
+
+# list all networks on docker host  
+  docker network ls	
+
+```
 
 
