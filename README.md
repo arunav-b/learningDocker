@@ -140,7 +140,7 @@ There are three types of docker networks -
   docker rm <first unique characters of container-id>
 
 # remove all containers that are in stopped/exited state
-docker rm $(docker ps -a -f status=exited -q)
+  docker rm $(docker ps -a -f status=exited -q)
 
 # container starts and then sleeps for 1000 secs
   docker run <image-name> sleep 1000	
